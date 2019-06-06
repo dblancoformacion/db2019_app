@@ -84,40 +84,34 @@ Class Usuarios{
 		';		
 	}
 }
+Class App{
+	function __construct(){
+		$sesion=new Sesiones();
+		$datos=new Datos();
+		$suscriptor=new Suscriptores();
+		$usuario=new Usuarios();
 
-$sesion=new Sesiones();
-if(isset($_GET['salir'])) $sesion->cerrar();
-
-$datos=new Datos();
-//$conn=$datos->conn;
-$suscriptor=new Suscriptores();
-
-if(isset($_GET['email']) && isset($_GET['nombre']))
-	$suscriptor->insertar($datos->conn);
-
-$usuario=new Usuarios();
-
-if( isset($_GET['login']) && isset($_GET['password']) ){
-	if(!$usuario->autentificar($datos->conn)) 
-		echo 'Acceso no autorizado, introduce tus credenciales';		
+		// controlador
+		if(isset($_GET['salir']))
+			$sesion->cerrar();
+		if(isset($_GET['email']) && isset($_GET['nombre']))
+			$suscriptor->insertar($datos->conn);
+		if( isset($_GET['login']) && isset($_GET['password']) )
+			if(!$usuario->autentificar($datos->conn)) 
+				echo 'Acceso no autorizado, introduce tus credenciales';		
+		if(!isset($_SESSION['login']))
+			echo $usuario->formulario();
+		else{
+			if(isset($_GET['borra']))
+				$suscriptor->borrar($datos->conn);
+			echo ' <a href="?salir=1">Cerrar</a> ';
+			echo '<div>Contenido únicamente accesible a usuarios registrados</div>';
+			echo $suscriptor->listado($datos->conn);
+		}
+		echo $suscriptor->formulario();
+	}
 }
-
-if(!isset($_SESSION['login']))
-	echo $usuario->formulario();
-else{
-	
-	if(isset($_GET['borra']))
-		$suscriptor->borrar($datos->conn);
-	
-	echo ' <a href="?salir=1">Cerrar</a> ';
-	
-	echo '<div>Contenido únicamente accesible a usuarios registrados</div>';
-	
-	echo $suscriptor->listado($datos->conn);
-}
-
-echo $suscriptor->formulario();
-
+$app=new App();
 ?>
 
 
