@@ -1,7 +1,7 @@
 <?php	// Ejemplo de POO
 Class Motos{
 	public $ruedas=2;
-	public $velocidad=0;
+	private $velocidad=0;
 	function acelera(){
 		return ++$this->velocidad;
 	}
@@ -24,6 +24,8 @@ $moto1=new Motos();
 $moto2=new Motos();
 $coche1=new Coches();
 $coche2=new Coches();
+
+//$moto1->velocidad=50;
 
 echo $moto1->acelera();
 echo $coche1->acelera();
