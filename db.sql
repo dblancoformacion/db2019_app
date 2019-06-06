@@ -13,3 +13,10 @@ SELECT * FROM usuarios;
 
 SELECT * FROM usuarios WHERE usuario='david' AND passwd=MD5('hola1');
 SELECT * FROM usuarios WHERE usuario='maria' AND passwd=MD5('adios');
+
+SELECT * FROM suscriptores;
+
+DELETE FROM suscriptores WHERE id_suscriptor=3;
+
+INSERT INTO suscriptores (nombre, email, f_ins)
+  VALUES ('ROBERTO', 'roberto@gmail.com', NOW());

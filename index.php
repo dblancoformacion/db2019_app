@@ -8,6 +8,16 @@ if(isset($_GET['salir'])){
 $conn=new mysqli('localhost','root','','db2019');
 $conn->query("SET NAMES utf8;");
 
+if(isset($_GET['email']) && isset($_GET['nombre'])){
+	$conn->query("
+		INSERT INTO suscriptores (nombre, email, f_ins)
+		  VALUES (
+			'".$_GET['nombre']."',
+			'".$_GET['email']."', NOW()
+			);		
+	");	
+}
+
 if( isset($_GET['login']) && isset($_GET['password']) ){
 	$rs=$conn->query("
 		SELECT * FROM usuarios
@@ -57,3 +67,13 @@ else{
 	<input name="email" placeholder="email">
 	<button>Suscribirse</button>
 </form>
+
+
+
+
+
+
+
+
+
+
