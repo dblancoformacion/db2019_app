@@ -8,14 +8,8 @@ if(isset($_GET['salir'])){
 if( isset($_GET['login']) && isset($_GET['password']) ){
 	if( $_GET['login']=='david'
 		&& $_GET['password']=='hola'
-	){
-		$_SESSION['login']='david';
-		
-	}
-	else{
-		echo 'Acceso no autorizado, introduce tus credenciales';
-		session_destroy();
-	}
+	) $_SESSION['login']='david';
+	else echo 'Acceso no autorizado, introduce tus credenciales';
 }
 
 if(!isset($_SESSION['login'])) echo '
