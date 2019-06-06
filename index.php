@@ -6,6 +6,7 @@ if(isset($_GET['salir'])){
 }
 
 $conn=new mysqli('localhost','root','','db2019');
+$conn->query("SET NAMES utf8;");
 
 if( isset($_GET['login']) && isset($_GET['password']) ){
 	$rs=$conn->query("
@@ -13,7 +14,7 @@ if( isset($_GET['login']) && isset($_GET['password']) ){
 			WHERE usuario='".$_GET['login']."'
 			AND passwd=MD5('".$_GET['password']."');	
 	");
-	if( $rs->num_rows )	$_SESSION['login']='david';
+	if( $rs->num_rows )	$_SESSION['login']=1;
 	else echo 'Acceso no autorizado, introduce tus credenciales';
 }
 
@@ -29,16 +30,14 @@ else{
 	
 	echo '<div>Contenido únicamente accesible a usuarios registrados</div>';
 	
+	$r=$conn->query("
+		SELECT * FROM suscriptores;	
+	")->fetch_all();
+	
+	foreach($r as $c) echo '<p>'.$c[1].' '.$c[2].'</p>';
 }
 
-echo '<pre>';
-//print_r($_SESSION);
-echo '</pre>';
-
-
-
-
-
+echo 'Esto lo ve todo el mundo';
 
 
 
