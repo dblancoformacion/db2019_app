@@ -5,9 +5,15 @@ if(isset($_GET['salir'])){
 	session_start();
 }
 
+$conn=new mysqli('localhost','root','','db2019');
+
 if( isset($_GET['login']) && isset($_GET['password']) ){
-	if( $_GET['login']=='david' && $_GET['password']=='hola' )
-		$_SESSION['login']='david';
+	$rs=$conn->query("
+		SELECT * FROM usuarios
+			WHERE usuario='".$_GET['login']."'
+			AND passwd=MD5('".$_GET['password']."');	
+	");
+	if( $rs->num_rows )	$_SESSION['login']='david';
 	else echo 'Acceso no autorizado, introduce tus credenciales';
 }
 
