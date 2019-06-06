@@ -49,15 +49,11 @@ else{
 	}
 }
 
-echo 'Esto lo ve todo el mundo';
-
-
-
-
-
-
-
-
-
 
 ?>
+
+<form>
+	<input name="nombre" placeholder="Nombre">
+	<input name="email" placeholder="email">
+	<button>Suscribirse</button>
+</form>
