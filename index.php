@@ -25,10 +25,15 @@ if(!isset($_SESSION['login'])) echo '
 		<button>Acceder</button>
 	</form>
 ';
-else echo ' <a href="?salir=1">Cerrar</a> ';
+else{
+	echo ' <a href="?salir=1">Cerrar</a> ';
+	
+	echo '<div>Contenido únicamente accesible a usuarios registrados</div>';
+	
+}
 
 echo '<pre>';
-print_r($_SESSION);
+//print_r($_SESSION);
 echo '</pre>';
 
 
