@@ -9,7 +9,7 @@ echo '
 	</form>
 ';
 
-if( isset($_GET['login']) && isset($_GET['password']){
+if( isset($_GET['login']) && isset($_GET['password']) ){
 	if( $_GET['login']=='david'
 		&& $_GET['password']=='hola'
 	){
