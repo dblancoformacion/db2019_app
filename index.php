@@ -26,6 +26,12 @@ if(!isset($_SESSION['login'])) echo '
 	</form>
 ';
 else{
+	
+	if(isset($_GET['borra'])) $conn->query("
+		DELETE FROM suscriptores
+			WHERE id_suscriptor=".$_GET['borra'].";	
+	");
+	
 	echo ' <a href="?salir=1">Cerrar</a> ';
 	
 	echo '<div>Contenido únicamente accesible a usuarios registrados</div>';
@@ -34,7 +40,13 @@ else{
 		SELECT * FROM suscriptores;	
 	")->fetch_all();
 	
-	foreach($r as $c) echo '<p>'.$c[1].' '.$c[2].'</p>';
+	foreach($r as $c){
+		echo '<p>';
+		echo '<a href="?borra='.$c[0].'">';
+		echo '<img src="papelera.png" style="width:16px;">';
+		echo '</a>';
+		echo ' '.$c[1].' '.$c[2].'</p>';
+	}
 }
 
 echo 'Esto lo ve todo el mundo';
