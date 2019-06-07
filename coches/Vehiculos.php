@@ -1,5 +1,4 @@
-<?php	// Ejemplo de POO
-//require('Vehiculos.php');
+<?php
 Class Vehiculos{
 	private $ruedas;
 	private $velocidad=0;
@@ -17,9 +16,7 @@ Class Vehiculos{
 		else $v='moto';
 		if($this->velocidad) $e='gif';
 		else $e='jpg';
-		return '<img src="'.$v.'.'.$e.'" style="
-			width:150px;
-			"/> ';
+		return '<img src="'.$v.'.'.$e.'" style="width:150px"/> ';
 	}
 	function panel(){
 		return '
@@ -30,10 +27,7 @@ Class Vehiculos{
 				<div>
 				<a href="#">Acelerar</a>
 				</div>
-				<div style="
-					height:150px;
-					padding-top:20px;
-				">
+				<div>
 				'.$this->dibujar().'
 				</div>
 				<div>
@@ -43,14 +37,3 @@ Class Vehiculos{
 		';
 	}
 }
-$coche1=new Vehiculos(4);
-$coche2=new Vehiculos(4);
-$moto1 =new Vehiculos(2);
-$moto2 =new Vehiculos(2);
-$coche1->acelera();
-$moto1->acelera();
-echo $coche1->panel();
-echo $coche2->panel();
-echo $moto1->panel();
-echo $moto2->panel();
-?>
