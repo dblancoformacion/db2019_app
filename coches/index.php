@@ -47,16 +47,25 @@ Class Vehiculos{
 	}
 }
 
-// modelo
-$vehiculo[] = new Vehiculos(4);
-$vehiculo[] = new Vehiculos(4);
-$vehiculo[] = new Vehiculos(2);
-$vehiculo[] = new Vehiculos(2);
+session_start();
+if(isset($_SESSION['vehiculo']))
+	$vehiculo=$_SESSION['vehiculo'];
+else{
+	// modelo
+	$vehiculo[] = new Vehiculos(4);
+	$vehiculo[] = new Vehiculos(4);
+	$vehiculo[] = new Vehiculos(2);
+	$vehiculo[] = new Vehiculos(2);
+}
 
 // controlador
+if(isset($_GET['acl']))
+	$vehiculo[$_GET['acl']]->acelera();
 
 // vista
 for($i=0;$i<4;$i++)
 	echo $vehiculo[$i]->panel($i);
+
+$_SESSION['vehiculo']=$vehiculo;
 
 ?>
