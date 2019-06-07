@@ -9,7 +9,9 @@ Class Coches{
 		return --$this->velocidad;
 	}
 	function dibujar(){
-		return '<img src="coche.jpg" style="width:150px">';
+		if($this->velocidad) $e='gif';
+		else $e='jpg';
+		return '<img src="coche.'.$e.'" style="width:150px">';
 	}
 }
 Class Motos{
@@ -22,7 +24,9 @@ Class Motos{
 		return --$this->velocidad;
 	}
 	function dibujar(){
-		return '<img src="moto.gif" style="width:150px">';
+		if($this->velocidad) $e='gif';
+		else $e='jpg';
+		return '<img src="moto.'.$e.'" style="width:150px">';
 	}
 }
 
