@@ -18,6 +18,7 @@ Class Coches{
 	function frena(){
 		return --$this->velocidad;
 	}
+	
 }
 
 $moto1=new Motos();
