@@ -3,15 +3,28 @@
 Class Vehiculos{
 	private $ruedas;
 	private $velocidad=0;
-	function __construct($n_ruedas){
+	function __construct($n_ruedas,$velocidad){
 		$this->ruedas=$n_ruedas;
+		$this->velocidad=$velocidad;
 	}
-	function acelera(){
-		return ++$this->velocidad;
+	function acelera($conn){
+		++$this->velocidad;
+		$conn->query("
+			UPDATE vehiculos 
+				SET velocidad=".$this->velocidad."
+				WHERE id_vehiculo=".$_GET['acl']."
+		");
+		return $this->velocidad;
 	}
-	function frena(){
-		if($this->velocidad>0)
+	function frena($conn){
+		if($this->velocidad>0){
 			--$this->velocidad;
+			$conn->query("
+				UPDATE vehiculos
+					SET velocidad=".$this->velocidad."
+					WHERE id_vehiculo=".$_GET['dcl']."
+			");
+		}
 		return $this->velocidad;
 	}
 	function dibujar(){
@@ -48,25 +61,20 @@ Class Vehiculos{
 		';
 	}
 }
-// persistencia
-session_start();
-if(isset($_SESSION['vehiculo']))
-	$vehiculo=$_SESSION['vehiculo'];
-else{
-	// modelo
-	$vehiculo[] = new Vehiculos(4);
-	$vehiculo[] = new Vehiculos(4);
-	$vehiculo[] = new Vehiculos(2);
-	$vehiculo[] = new Vehiculos(2);
-}
+
+// modelo
+$conn=new mysqli('localhost','root','','db2019');
+$r=$conn->query("
+	SELECT * FROM vehiculos;
+")->fetch_all();
+foreach($r as $c)
+	$vehiculo[$c[0]] = new Vehiculos($c[1],$c[2]);
 // controlador
 if(isset($_GET['acl']))
-	$vehiculo[$_GET['acl']]->acelera();
+	$vehiculo[$_GET['acl']]->acelera($conn);
 if(isset($_GET['dcl']))
-	$vehiculo[$_GET['dcl']]->frena();
+	$vehiculo[$_GET['dcl']]->frena($conn);
 // vista
-for($i=0;$i<4;$i++)
-	echo $vehiculo[$i]->panel($i);
-// persistencia
-$_SESSION['vehiculo']=$vehiculo;
+foreach($r as $c)
+	echo $vehiculo[$c[0]]->panel($c[0]);
 ?>
