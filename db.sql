@@ -20,3 +20,12 @@ DELETE FROM suscriptores WHERE id_suscriptor=3;
 
 INSERT INTO suscriptores (nombre, email, f_ins)
   VALUES ('ROBERTO', 'roberto@gmail.com', NOW());
+  
+CREATE TABLE vehiculos(
+  id_vehiculo int AUTO_INCREMENT PRIMARY KEY,
+  n_ruedas int NOT NULL,
+  velocidad int NOT NULL
+);
+INSERT INTO vehiculos (n_ruedas)
+  VALUES (4),(4),(2),(2);
+SELECT * FROM vehiculos;  
