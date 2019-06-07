@@ -10,7 +10,9 @@ Class Vehiculos{
 		return ++$this->velocidad;
 	}
 	function frena(){
-		return --$this->velocidad;
+		if($this->velocidad>0)
+			--$this->velocidad;
+		return $this->velocidad;
 	}
 	function dibujar(){
 		if($this->ruedas>3) $v='coche';
@@ -46,7 +48,7 @@ Class Vehiculos{
 		';
 	}
 }
-
+// persistencia
 session_start();
 if(isset($_SESSION['vehiculo']))
 	$vehiculo=$_SESSION['vehiculo'];
@@ -57,15 +59,14 @@ else{
 	$vehiculo[] = new Vehiculos(2);
 	$vehiculo[] = new Vehiculos(2);
 }
-
 // controlador
 if(isset($_GET['acl']))
 	$vehiculo[$_GET['acl']]->acelera();
-
+if(isset($_GET['dcl']))
+	$vehiculo[$_GET['dcl']]->frena();
 // vista
 for($i=0;$i<4;$i++)
 	echo $vehiculo[$i]->panel($i);
-
+// persistencia
 $_SESSION['vehiculo']=$vehiculo;
-
 ?>
