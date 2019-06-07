@@ -21,7 +21,7 @@ Class Vehiculos{
 			width:150px;
 			"/> ';
 	}
-	function panel(){
+	function panel($i){
 		return '
 			<div style="
 				display:inline-block;
@@ -31,7 +31,7 @@ Class Vehiculos{
 				'.$this->velocidad.' Km/h
 				</div>
 				<div>
-				<a href="#"><button>Acelerar</button></a>
+				<a href="?acl='.$i.'"><button>Acelerar</button></a>
 				</div>
 				<div style="
 					height:150px;
@@ -40,20 +40,23 @@ Class Vehiculos{
 				'.$this->dibujar().'
 				</div>
 				<div>
-				<a href="#"><button>Frenar</button></a>
+				<a href="?dcl='.$i.'"><button>Frenar</button></a>
 				</div>
 			</div>		
 		';
 	}
 }
-$coche1=new Vehiculos(4);
-$coche2=new Vehiculos(4);
-$moto1 =new Vehiculos(2);
-$moto2 =new Vehiculos(2);
-$coche1->acelera();
-$moto1->acelera();
-echo $coche1->panel();
-echo $coche2->panel();
-echo $moto1->panel();
-echo $moto2->panel();
+
+// modelo
+$vehiculo[] = new Vehiculos(4);
+$vehiculo[] = new Vehiculos(4);
+$vehiculo[] = new Vehiculos(2);
+$vehiculo[] = new Vehiculos(2);
+
+// controlador
+
+// vista
+for($i=0;$i<4;$i++)
+	echo $vehiculo[$i]->panel($i);
+
 ?>
