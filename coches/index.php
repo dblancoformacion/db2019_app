@@ -23,12 +23,15 @@ Class Vehiculos{
 	}
 	function panel(){
 		return '
-			<div style="display:inline-block">
+			<div style="
+				display:inline-block;
+				text-align:center;
+				">
 				<div>
 				'.$this->velocidad.' Km/h
 				</div>
 				<div>
-				<a href="#">Acelerar</a>
+				<a href="#"><button>Acelerar</button></a>
 				</div>
 				<div style="
 					height:150px;
@@ -37,7 +40,7 @@ Class Vehiculos{
 				'.$this->dibujar().'
 				</div>
 				<div>
-				<a href="#">Frenar</a>
+				<a href="#"><button>Frenar</button></a>
 				</div>
 			</div>		
 		';
