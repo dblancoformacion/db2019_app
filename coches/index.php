@@ -1,19 +1,6 @@
 <?php	// Ejemplo de POO
 Class Coches{
-	public $ruedas=4;
-	public $velocidad=0;
-	function acelera(){
-		return ++$this->velocidad;
-	}
-	function frena(){
-		return --$this->velocidad;
-	}
-	function dibujar(){
-		return 'Coche';
-	}
-}
-Class Motos{
-	public $ruedas=2;
+	private $ruedas=4;
 	private $velocidad=0;
 	function acelera(){
 		return ++$this->velocidad;
@@ -22,7 +9,20 @@ Class Motos{
 		return --$this->velocidad;
 	}
 	function dibujar(){
-		return 'Moto';
+		return '<img src="coche.jpg" style="width:150px">';
+	}
+}
+Class Motos{
+	private $ruedas=2;
+	private $velocidad=0;
+	function acelera(){
+		return ++$this->velocidad;
+	}
+	function frena(){
+		return --$this->velocidad;
+	}
+	function dibujar(){
+		return '<img src="moto.gif" style="width:150px">';
 	}
 }
 
