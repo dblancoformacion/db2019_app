@@ -37,6 +37,11 @@ INSERT INTO luminarias (luminaria, encendida, id_estancia) VALUES
 ('A8L32', 0, 9),
 ('A8L41', 0, 9),
 ('A8L42', 0, 9);
+INSERT INTO luminarias (luminaria, encendida, id_estancia) VALUES
+('A0L1', 0, 1),
+('A0L2', 0, 1),
+('A0L3', 0, 1),
+('A0L4', 0, 1);
 SELECT * FROM estancias;
 SELECT * FROM luminarias;
 SELECT * FROM luminarias JOIN estancias USING(id_estancia);

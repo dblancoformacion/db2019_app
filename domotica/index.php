@@ -28,8 +28,12 @@ Class Luminarias{
 						'.$estancia.'
 						</div>
 				';
-			}				
-			$txt.= '<img src="imgs/foco_ok.png">';
+			}
+			if($luminaria['encendida']) $ok='ko';
+			else $ok='ok';
+			$txt.='<a href="" title="'.$luminaria['luminaria'].'">';
+			$txt.='<img src="imgs/foco_'.$ok.'.png">';
+			$txt.='</a>';
 		}
 		return $txt.'</div>';
 	}
