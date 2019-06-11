@@ -31,21 +31,20 @@ Class Luminarias{
 			}
 			if($luminaria['encendida']) $ok='ko';
 			else $ok='ok';
-			$txt.='<a href="" title="'.$luminaria['luminaria'].'">';
+			$txt.='<a href="?id_lampara='.$luminaria['id_luminaria'].'" ';
+			$txt.='title="'.$luminaria['luminaria'].'">';
 			$txt.='<img src="imgs/foco_'.$ok.'.png">';
 			$txt.='</a>';
 		}
 		return $txt.'</div>';
 	}
 }
-
-$luminarias=new Luminarias();
-
 // Modelo
+$luminarias=new Luminarias();
 $luminarias->inicializa();
-
 // Controlador
-
+if(isset($_GET['id_lampara']))
+	//echo 'Has pulsado la lámpara '.$_GET['id_lampara'];
 // Vista
 echo $luminarias->mostrar();
 /*
